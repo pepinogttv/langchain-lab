@@ -1,6 +1,8 @@
-### El gráfico más simple (Node.js)
+# El gráfico más simple (Node.js)
 
-Vamos a construir un grafo con 3 nodos y un borde condicional, equivalente a la notebook de Python pero usando JavaScript.
+Vamos a construir un grafo simple con 3 nodos y un borde condicional, equivalente a la notebook de Python pero usando JavaScript.
+
+![Simple Graph](https://cdn.prod.website-files.com/65b8cd72835ceeacd4449a53/66dba5f465f6e9a2482ad935_simple-graph1.png)
 
 ### Instalación
 
@@ -114,3 +116,35 @@ graph TD
   // { graph_state: 'Hi, this is Lance. I am sad!' }
 })();
 ```
+
+`invoke` ejecuta todo el grafo de forma sincrónica.
+
+Esto espera a que cada paso se complete antes de pasar al siguiente.
+
+Devuelve el estado final del grafo después de que todos los nodos hayan ejecutado.
+
+En este caso, devuelve el estado después de que `node_3` haya completado:
+
+```
+{ graph_state: 'Hi, this is Lance. I am sad!' }
+```
+
+### Explicación del flujo
+
+El grafo compilado implementa el protocolo [runnable](https://js.langchain.com/docs/concepts/runnables/).
+
+Esto proporciona una forma estándar de ejecutar componentes de LangChain.
+
+`invoke` es uno de los métodos estándar en esta interfaz.
+
+La entrada es un objeto `{ graph_state: "Hi, this is Lance." }`, que establece el valor inicial para nuestro diccionario de estado del grafo.
+
+Cuando se llama `invoke`, el grafo comienza la ejecución desde el nodo `START`.
+
+Progresa a través de los nodos definidos (`node_1`, `node_2`, `node_3`) en orden.
+
+El borde condicional recorrerá desde el nodo `1` al nodo `2` o `3` usando una regla de decisión 50/50.
+
+Cada función de nodo recibe el estado actual y devuelve un nuevo valor, que sobrescribe el estado del grafo.
+
+La ejecución continúa hasta que alcanza el nodo `END`.
