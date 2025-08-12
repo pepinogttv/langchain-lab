@@ -1,0 +1,1 @@
+el estado se comparte entre nodos, desde mi entendimiento es simplemente un objeto en memoria, un estado cualquiera wachin

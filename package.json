@@ -1,0 +1,29 @@
+{
+  "name": "langchain-langgraph-lab",
+  "version": "0.1.0",
+  "description": "Laboratorio para aprender LangChain y LangGraph (JavaScript, ESM)",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "npx @langchain/langgraph-cli dev | cat",
+    "start": "node src/main.js",
+    "check": "node -e \"require('fs').access('node_modules',0,err=>{if(err){console.error('Run npm install first');process.exit(1)}else{console.log('Deps present')}})\""
+  },
+  "keywords": [
+    "langchain",
+    "langgraph",
+    "ai",
+    "agents"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@langchain/core": "^0.3.58",
+    "@langchain/langgraph": "^0.4.3",
+    "@langchain/openai": "^0.3.7",
+    "dotenv": "^16.4.5",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {}
+}
+
+
